@@ -322,7 +322,7 @@ footer{border-top:1px solid rgba(255,255,255,.14)}
 
 @media (prefers-reduced-motion:no-preference){
   .visual .s-after{animation:drop .9s cubic-bezier(.2,.8,.2,1) both}
-  .visual .bulb{animation:blink 2.4s steps(2,jump-none) infinite}
+  .visual .bulb,.blink{animation:blink 2.4s steps(2,jump-none) infinite}
   @keyframes drop{from{transform:rotate(6deg) translateY(18px)}to{transform:rotate(1.5deg)}}
   @keyframes blink{50%{filter:brightness(1.25) drop-shadow(0 0 10px #FFC93C)}}
 }
@@ -608,7 +608,7 @@ footer{border-top:1px solid rgba(255,255,255,.14)}
 <section class="band b-black" id="comprar">
   <div class="wrap offer">
     <div class="stack">
-      <span class="px" data-sprite="bulb" style="width:64px" aria-hidden="true"></span>
+      <span class="px blink" data-sprite="bulb" style="width:72px" aria-hidden="true"></span>
       <h2>Comece a encontrar conteúdo no que <span class="hi">já acontece ao seu redor.</span></h2>
       <p class="prose">Acesso enviado por e-mail logo após a confirmação do pagamento.</p>
     </div>
