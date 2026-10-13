@@ -1,0 +1,10 @@
+import base64,os,re,shutil,sys
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+s=open('src.html',encoding='utf-8').read()
+def d(p,m): return f"data:{m};base64,"+base64.b64encode(open(p,'rb').read()).decode()
+s=s.replace('{{GABI}}',d('assets/gabi.jpg','image/jpeg'))
+s=re.sub(r'\{\{DEPO(\d)\}\}',lambda m:d(f'assets/depo{m.group(1)}.jpg','image/jpeg'),s)
+s=re.sub(r'\{\{S(\d{3})\}\}',lambda m:d(f'assets/s{m.group(1)}.jpg','image/jpeg'),s)
+assert '{{' not in s, re.findall(r'\{\{\w+\}\}',s)
+open('index.html','w',encoding='utf-8').write(s); print(len(s)//1024,'KB')
+if len(sys.argv)>1: shutil.copy('index.html',sys.argv[1])

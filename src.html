@@ -1,0 +1,756 @@
+<meta charset="utf-8">
+<title>Caderno das Boas Ideias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&family=Caveat:wght@600&family=Gochi+Hand&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap">
+<style>
+/* Layout: ID da prisssma.lab mesclada com branco. Dobras alternadas (branco, preto, vermelho, azul, cinza), títulos condensados em caixa alta, fitas vermelhas, pixel art e o degradê do cristal (vermelho → laranja → azul). */
+:root{
+  --white:#FFFFFF;
+  --mist:#EFEFF1;
+  --black:#0C0C0E;
+  --red:#E03A2B;
+  --orange:#F2731D;
+  --blue:#3346C2;
+  --navy:#2A2E78;
+  --lav:#8E91CF;
+  --yellow:#F4B740;
+  --ink:#0C0C0E;
+  --muted:#5D5E6E;
+  --line:rgba(42,46,120,.14);
+  --prism:linear-gradient(90deg,#0C0C0E 0%,#E03A2B 30%,#F2731D 55%,#3346C2 100%);
+  --glow:radial-gradient(70% 90% at 92% 100%,rgba(242,115,29,.95) 0%,rgba(224,58,43,.75) 28%,rgba(224,58,43,0) 62%),radial-gradient(55% 60% at 35% 115%,rgba(51,70,194,.9) 0%,rgba(51,70,194,0) 70%);
+  --f-display:"Anton","Impact","Arial Narrow Bold",sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-hand:"Gochi Hand","Comic Sans MS",cursive;
+  --wrap:1120px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;padding-bottom:84px;overflow-x:hidden}
+@media (min-width:860px){body{padding-bottom:0}}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:16px}
+@media (min-width:600px){.wrap{padding-inline:28px}}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-transform:uppercase;line-height:1.06;letter-spacing:.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.4rem,6.4vw,4.4rem)}
+h3{font-size:1.7rem}
+p{margin:0}
+em.s{font-family:var(--f-serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.01em}
+.stack{display:grid;gap:20px}
+.prose{max-width:62ch;display:grid;gap:16px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:4px}
+
+/* dobras */
+.band{padding-block:clamp(64px,10vw,116px)}
+.b-white{background:var(--white);color:var(--ink)}
+.b-mist{background:var(--mist);color:var(--ink)}
+.b-black{background:var(--glow),var(--black);color:#fff}
+.b-red{background:var(--red);color:#fff}
+.b-blue{background:var(--navy);color:#fff}
+.b-white h2,.b-mist h2{color:var(--navy)}
+.b-white h2 em.s,.b-mist h2 em.s{color:var(--lav)}
+.hi{color:var(--lav)}
+.slide{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:6px;box-shadow:0 18px 40px -22px rgba(12,12,14,.55)}
+.b-white .prose,.b-mist .prose{color:var(--muted)}
+.b-white .prose strong,.b-mist .prose strong{color:var(--ink)}
+.b-black .prose{color:rgba(255,255,255,.78)}
+.b-red .prose,.b-blue .prose{color:rgba(255,255,255,.9)}
+.prism-line{height:6px;background:var(--prism)}
+
+/* fita vermelha (como nos posts) */
+.ribbon{display:inline-block;justify-self:start;background:var(--red);color:#fff;font-family:var(--f-serif);font-style:italic;font-size:1.15rem;line-height:1.2;padding:4px 14px;transform:rotate(-2deg)}
+.b-red .ribbon{background:var(--black)}
+.ribbon.y{background:var(--yellow);color:var(--ink)}
+
+/* pixel art */
+.px{display:inline-block;image-rendering:pixelated;flex:none}
+.px svg{display:block;width:100%;height:auto}
+
+/* topo */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:1.15rem;letter-spacing:-.02em}
+.brand small{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:1.05rem}
+.brand svg{width:28px;height:34px}
+.mini-cta{font-weight:800;font-size:.92rem;text-decoration:none;background:var(--black);color:#fff;border-radius:999px;padding:9px 16px;white-space:nowrap}
+.mini-cta:hover{background:var(--red)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;text-align:center;text-decoration:none;
+  font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.1rem,2.6vw,1.3rem);letter-spacing:.02em;line-height:1.1;
+  background:var(--red);color:#fff;padding:18px 28px;border:3px solid var(--black);box-shadow:6px 6px 0 var(--black);transition:transform .15s,box-shadow .15s;max-width:100%}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--black)}
+.btn:active{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--black)}
+.b-red .btn,.b-black .btn{background:var(--yellow);color:var(--ink);box-shadow:6px 6px 0 #fff;border-color:var(--black)}
+.fine{font-size:.88rem;color:var(--muted)}
+.b-black .fine,.b-red .fine,.b-blue .fine{color:rgba(255,255,255,.75)}
+
+.cta-row{display:flex;align-items:center;gap:14px 22px;flex-wrap:wrap;margin-top:40px}
+.stack>.cta-row{margin-top:12px}
+
+/* hero */
+.hero{display:grid;gap:52px;align-items:center;padding-block:clamp(24px,5vw,64px) clamp(64px,9vw,104px)}
+@media (min-width:920px){.hero{grid-template-columns:1.1fr .9fr}}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.hero h1{font-size:clamp(3.4rem,10vw,7.2rem);line-height:1}
+.hero h1{color:var(--navy)}
+.hero h1 .r{color:var(--lav)}
+.hero h1 em.s{display:block;font-size:.62em;line-height:1.12;color:var(--red);margin-top:.08em}
+.hero .lead{font-size:clamp(1.12rem,2.2vw,1.3rem);line-height:1.45;max-width:36ch;color:var(--muted)}
+.hero .lead b{color:var(--ink)}
+.deliv{display:flex;flex-wrap:wrap;gap:8px}
+.deliv span{font-size:.9rem;font-weight:700;border:2px solid var(--black);border-radius:999px;padding:3px 12px}
+.buy{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.price{display:grid;line-height:1}
+.price small{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;color:var(--muted)}
+.price b{font-family:var(--f-display);font-weight:400;font-size:3rem}
+
+/* pilha de páginas reais do caderno */
+.visual{position:relative;min-width:0;display:grid;gap:0;padding:10px 6px 20px}
+.visual figure{margin:0;position:relative}
+.visual .s-back{width:78%;justify-self:end;transform:rotate(3deg);opacity:.95}
+.visual .s-before{width:82%;margin-top:-16%;transform:rotate(-2.5deg);z-index:1}
+.visual .s-after{width:86%;justify-self:end;margin-top:-10%;transform:rotate(1.5deg);z-index:2}
+.tagline{position:absolute;top:-14px;left:14px;z-index:3;background:var(--red);color:#fff;font-family:var(--f-display);text-transform:uppercase;font-size:.95rem;letter-spacing:.06em;padding:3px 10px}
+.tagline.y{background:var(--yellow);color:var(--ink)}
+.visual .bulb{position:absolute;width:64px;top:-14px;left:-4px;transform:rotate(-10deg);z-index:3}
+/* dor (preto) */
+.pain{display:grid;gap:44px}
+@media (min-width:920px){.pain{grid-template-columns:1fr 1fr;align-items:start}}
+.pain h2 .o{color:var(--orange)}
+.sources{display:grid;gap:10px}
+.src{display:flex;gap:14px;align-items:center;border:1.5px solid rgba(255,255,255,.22);padding:13px 16px;font-weight:600}
+.src .x{font-family:var(--f-display);color:var(--red);font-size:1.3rem;line-height:1;flex:none}
+.src.no span{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:rgba(255,255,255,.6)}
+.src.yes{background:var(--yellow);color:var(--ink);border-color:var(--yellow);transform:rotate(-1deg)}
+.src.yes .x{color:var(--ink)}
+.tools{width:min(100%,320px);margin-top:4px}
+.tools svg{display:block;width:100%;height:auto;overflow:visible}
+.tools .ink{fill:none;stroke:#111114;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tools .ink.thin{stroke-width:1.6}
+.tools .page{fill:#fff}
+.tools .hw{font-family:"Caveat","Gochi Hand",cursive;font-weight:600;fill:#22222a}
+.tools .pencil .body{fill:#fff}
+.tools .pencil .eraser{fill:var(--red)}
+.skulls{display:flex;gap:18px;align-items:end}
+
+/* método (branco) */
+.head{display:grid;gap:14px;max-width:780px;margin-bottom:44px}
+.steps{display:grid;gap:18px}
+@media (min-width:680px){.steps{grid-template-columns:repeat(2,1fr);gap:28px 22px}}
+@media (min-width:1040px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{min-width:0;display:grid;gap:10px;align-content:start}
+.step .n{font-family:var(--f-display);text-transform:uppercase;font-size:1.25rem;letter-spacing:.04em;color:var(--navy);border-top:4px solid var(--red);padding-top:10px;margin-top:6px}
+.step:nth-child(2) .n{border-color:var(--orange)}
+.step:nth-child(3) .n{border-color:var(--blue)}
+.step:nth-child(4) .n{border-color:var(--navy)}
+.step p{font-family:var(--f-serif);font-style:italic;font-size:1.15rem;line-height:1.3;color:var(--muted)}
+.method-foot{margin-top:40px;font-size:1.2rem;max-width:56ch}
+.mark{-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(transparent 55%,var(--yellow) 55%,var(--yellow) 92%,transparent 92%);padding-inline:.1em}
+
+/* prática (vermelho) */
+.practice{display:grid;gap:40px}
+@media (min-width:920px){.practice{grid-template-columns:.9fr 1.1fr;align-items:center}}
+.scene-img{border:3px solid var(--black);box-shadow:10px 10px 0 var(--black);transform:rotate(-1.2deg);border-radius:0}
+.scene{background:#fff;color:var(--ink);padding:18px 20px;font-family:var(--f-hand);font-size:1.45rem;line-height:1.25;border:3px solid var(--black);box-shadow:8px 8px 0 var(--black);transform:rotate(-1.2deg)}
+.scene small{display:block;font-family:var(--f-display);text-transform:uppercase;font-size:.9rem;letter-spacing:.08em;color:var(--red);margin-bottom:4px}
+.outs{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.outs span{font-family:var(--f-display);text-transform:uppercase;font-size:1.05rem;letter-spacing:.03em;padding:8px 14px;background:var(--black);color:#fff}
+.outs span:last-child{background:var(--yellow);color:var(--ink)}
+
+/* entregáveis (branco) */
+.kit{display:grid;gap:40px}
+@media (min-width:920px){.kit{grid-template-columns:.8fr 1.2fr}}
+.check{list-style:none;margin:0;padding:0;border-top:2px solid var(--black)}
+.check li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+.check li::before{content:"";width:22px;height:22px;margin-top:3px;background:var(--red);
+  clip-path:polygon(0 50%,15% 35%,40% 60%,85% 10%,100% 25%,40% 90%)}
+.check b{display:block;font-weight:800;font-size:1.1rem}
+.check span{color:var(--muted);font-size:.98rem}
+.check li.bonus{background:var(--black);color:#fff;margin-top:14px;padding-inline:16px;border:0;position:relative}
+.check li.bonus::before{background:var(--yellow);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.check li.bonus span{color:rgba(255,255,255,.75)}
+
+/* por dentro */
+.pages-count{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;font-family:var(--f-display);text-transform:uppercase;font-size:clamp(1.3rem,3vw,1.8rem);line-height:1.1}
+.pages-count b{font-weight:400;font-size:2.4em;line-height:1;color:var(--orange)}
+.strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px max(16px,calc((100vw - var(--wrap))/2 + 28px)) 26px;scrollbar-width:thin}
+.strip .slide{flex:none;width:min(78vw,440px);scroll-snap-align:start}
+.strip .slide:nth-child(odd){transform:rotate(-1deg)}
+.strip .slide:nth-child(even){transform:rotate(1deg)}
+
+/* IA (preto) */
+.ai{display:grid;gap:40px}
+@media (min-width:920px){.ai{grid-template-columns:1fr 1fr;align-items:center}}
+.ai h2 em.s{color:var(--orange)}
+.prompts{display:grid;gap:30px;min-width:0}
+.pr{margin:0;position:relative}
+.pr.bad{transform:rotate(-1.5deg);width:88%}
+.pr.bad img{filter:grayscale(.3);opacity:.85}
+.pr.good{transform:rotate(1deg);width:92%;justify-self:end;margin-top:-8%}
+.pr.good img{box-shadow:0 0 0 3px #fff,0 30px 60px -20px rgba(242,115,29,.6)}
+.prompt{padding:18px 20px;font-size:1rem;line-height:1.5;min-width:0}
+.prompt small{display:block;font-family:var(--f-display);text-transform:uppercase;font-size:.95rem;letter-spacing:.06em;margin-bottom:6px}
+.prompt.bad{border:1.5px dashed rgba(255,255,255,.35)}
+.prompt.bad small{color:var(--red)}
+.prompt.bad p{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:rgba(255,255,255,.6)}
+.prompt.good{background:#fff;color:var(--ink);border-top:6px solid;border-image:var(--prism) 1}
+.prompt.good small{color:var(--blue)}
+
+/* Gabi (branco) */
+.teacher{display:grid;gap:52px;align-items:center}
+@media (min-width:920px){.teacher{grid-template-columns:.8fr 1.2fr}}
+.photo{position:relative;max-width:400px;width:100%;margin-inline:auto}
+.photo figure{margin:0;border:3px solid var(--black);box-shadow:12px 12px 0 var(--red);background:#fff}
+.photo img{display:block;width:100%;height:auto}
+.photo .ribbon{position:absolute;left:-10px;bottom:28px;font-size:1.05rem;max-width:230px}
+.photo .heart{position:absolute;width:52px;right:-18px;top:-18px;transform:rotate(12deg)}
+.teacher h2{font-size:clamp(2.8rem,7vw,4.8rem)}
+.role{font-family:var(--f-serif);font-style:italic;font-size:1.4rem;color:var(--blue)}
+.video-slot{display:flex;gap:16px;align-items:center;border:2px dashed var(--black);padding:16px 18px;background:var(--mist)}
+.play{flex:none;width:52px;height:52px;border-radius:50%;background:var(--red);display:grid;place-items:center}
+.play::before{content:"";border-left:16px solid #fff;border-block:10px solid transparent;margin-left:4px}
+
+/* prova (cinza) */
+.profiles{display:grid;gap:18px}
+@media (min-width:760px){.profiles{grid-template-columns:repeat(3,1fr)}}
+.prof{background:#fff;padding:22px;display:grid;gap:12px;min-width:0;border-top:6px solid var(--red)}
+.prof:nth-child(2){border-top-color:var(--orange)}
+.prof:nth-child(3){border-top-color:var(--blue)}
+.prof .who{font-weight:800;line-height:1.3}
+.prof .who span{display:block;font-weight:500;color:var(--muted);font-size:.92rem}
+.growth{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.growth .from{font-size:1.15rem;color:var(--muted);text-decoration:line-through}
+.growth .to{font-family:var(--f-display);font-size:2.8rem;line-height:1}
+.growth .arr{color:var(--red);font-weight:800}
+.prof .when{font-family:var(--f-serif);font-style:italic;color:var(--muted)}
+.beforeafter{margin-top:28px;display:grid;gap:22px}
+@media (min-width:760px){.beforeafter{grid-template-columns:1fr 1fr}}
+.shot,.chat{margin:0;background:#fff;padding:12px;display:grid;gap:10px;min-width:0;box-shadow:0 14px 30px -20px rgba(0,0,0,.4)}
+.shot img,.chat img{display:block;width:100%;height:auto}
+.shot figcaption,.chat figcaption{font-family:var(--f-serif);font-style:italic;color:var(--muted);text-align:center}
+.prints{columns:1;column-gap:22px}
+@media (min-width:640px){.prints{columns:2}}
+@media (min-width:1000px){.prints{columns:3}}
+.chat{break-inside:avoid;margin-bottom:22px}
+.chat:nth-child(odd){transform:rotate(-.8deg)}
+.chat:nth-child(even){transform:rotate(.8deg)}
+
+/* para quem (branco) */
+.forwho{display:grid;gap:44px}
+@media (min-width:920px){.forwho{grid-template-columns:1fr 1fr}}
+.pains{list-style:none;padding:0;margin:0;display:grid;gap:0;border-top:2px solid var(--black)}
+.pains li{display:flex;gap:14px;align-items:baseline;font-size:1.12rem;padding-block:12px;border-bottom:1px solid var(--line)}
+.pains li::before{content:"→";font-weight:800;color:var(--red)}
+.quote{font-family:var(--f-serif);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.2;margin-top:12px}
+
+/* mudança (azul) */
+.change{display:grid;gap:24px;max-width:860px}
+.change p.big{font-size:clamp(1.25rem,2.8vw,1.65rem);line-height:1.4}
+.change .stars{display:flex;gap:12px}
+
+/* oferta (branco) */
+.offer{display:grid;gap:44px;align-items:center}
+@media (min-width:920px){.offer{grid-template-columns:1fr 1fr}}
+.ticket{background:#fff;border:3px solid var(--black);box-shadow:12px 12px 0 var(--black);display:grid;gap:18px;padding:30px 26px;min-width:0;position:relative}
+.ticket::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--prism)}
+.ticket ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.ticket li{display:flex;gap:10px;font-weight:600}
+.ticket li::before{content:"✓";color:var(--red);font-weight:800}
+.bigprice{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-top:2px dashed var(--line);padding-top:18px}
+.bigprice b{font-family:var(--f-display);font-weight:400;font-size:clamp(3.6rem,8vw,4.8rem);line-height:1}
+.bigprice span{font-family:var(--f-serif);font-style:italic;font-size:1.2rem;color:var(--muted)}
+.ticket .btn{width:100%}
+
+/* garantia (vermelho) */
+.guarantee{display:grid;gap:30px;align-items:center}
+@media (min-width:860px){.guarantee{grid-template-columns:auto 1fr auto}}
+.seal{width:150px;height:150px;margin-inline:auto}
+.seal text{font-family:var(--f-display)}
+
+/* faq (cinza) */
+.faq{display:grid;gap:10px;max-width:840px}
+.faq details{background:#fff;padding:2px 20px;border-left:5px solid var(--black)}
+.faq details[open]{border-left-color:var(--red)}
+.faq summary{cursor:pointer;list-style:none;font-weight:800;font-size:1.1rem;padding-block:16px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--f-display);font-size:1.5rem;line-height:.9;color:var(--red);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:18px;color:var(--muted);max-width:64ch}
+
+footer{background:var(--black);color:rgba(255,255,255,.7);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:30px}
+footer a{text-decoration:none}
+
+/* ajustes por fundo */
+.b-black .prose strong{color:#fff}
+.b-black h2 em.s{color:var(--orange)}
+.b-black .hi{color:var(--lav)}
+.b-black .mark{color:var(--ink)}
+.b-black .ribbon.y{background:var(--yellow)}
+.b-black .scene-img{border-color:#fff;box-shadow:10px 10px 0 var(--orange)}
+.b-black .outs span{background:#fff;color:var(--ink)}
+.b-black .outs span:last-child{background:var(--orange);color:var(--ink)}
+.b-black .pains{border-top-color:#fff}
+.b-black .pains li{border-bottom-color:rgba(255,255,255,.16)}
+.b-black .pains li::before{color:var(--orange)}
+.b-black .ticket{color:var(--ink);box-shadow:12px 12px 0 var(--orange);border-color:#fff}
+.b-black .ticket .btn{background:var(--red);color:#fff;box-shadow:6px 6px 0 var(--black)}
+.b-black .ticket .fine{color:var(--muted)}
+.b-black .video-slot{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.5)}
+.b-black .role{color:var(--lav)}
+.b-black .photo figure{border-color:#fff;box-shadow:12px 12px 0 var(--orange)}
+.b-black .faq details{background:#fff;color:var(--ink)}
+.b-black .quote{color:#fff}
+.quote .q2{color:var(--orange)}
+.b-white .prof{border:1px solid var(--line);border-top-width:6px}
+.b-white .shot,.b-white .chat{border:1px solid var(--line)}
+.b-white .guarantee .btn{background:var(--red);color:#fff}
+.b-white .ai h2 em.s{color:var(--red)}
+.b-white .pr.bad img{opacity:1;filter:none}
+footer{border-top:1px solid rgba(255,255,255,.14)}
+
+/* barra fixa mobile */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--black);color:#fff}
+.sticky b{font-family:var(--f-display);font-weight:400;font-size:1.7rem;line-height:1}
+.sticky small{display:block;font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.2}
+.sticky .btn{padding:11px 16px;font-size:1rem;box-shadow:3px 3px 0 #fff;background:var(--red);color:#fff}
+@media (min-width:860px){.sticky{display:none}}
+
+@media (prefers-reduced-motion:no-preference){
+  .visual .s-after{animation:drop .9s cubic-bezier(.2,.8,.2,1) both}
+  .visual .bulb{animation:blink 2.4s steps(2,jump-none) infinite}
+  @keyframes drop{from{transform:rotate(6deg) translateY(18px)}to{transform:rotate(1.5deg)}}
+  @keyframes blink{50%{filter:brightness(1.25) drop-shadow(0 0 10px #FFC93C)}}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+
+<!-- logo cristal -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3262B"/><stop offset=".5" stop-color="#F59A23"/><stop offset="1" stop-color="#2F5BEA"/></linearGradient>
+    <symbol id="crystal" viewBox="0 0 40 48"><path d="M20 2 36 16 30 44 8 40 4 14Z M20 2 18 24 30 44 M4 14 18 24 36 16 M18 24 8 40" fill="none" stroke="url(#pg)" stroke-width="2" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- HERO · branco -->
+<header class="b-white">
+  <div class="wrap top">
+    <a class="brand" href="#comprar" aria-label="prisssma.lab"><svg aria-hidden="true"><use href="#crystal"/></svg>prisssma<small>.lab</small></a>
+    <a class="mini-cta" href="#comprar">R$ 67 · Quero o meu</a>
+  </div>
+</header>
+<section class="b-white">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="ribbon">aulas gravadas + caderno digital</span>
+      <h1>O Caderno das <span class="r">Boas Ideias</span><em class="s">da cena ao conteúdo</em></h1>
+      <p class="lead">Aprenda, na prática, a transformar situações comuns do seu dia em <b>conteúdos autorais</b> que posicionam e atraem as pessoas certas.</p>
+      <div class="deliv"><span>Aulas gravadas</span><span>Caderno preenchível</span><span>+200 ganchos</span><span>Bônus de IA</span></div>
+      <div class="buy">
+        <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno por R$ 67 →</a>
+        <div class="price"><small>investimento único</small><b>R$ 67</b></div>
+      </div>
+      <p class="fine">Garantia de 7 dias · Pagamento processado pela Kiwify</p>
+    </div>
+    <div class="visual" aria-label="Páginas do Caderno das Boas Ideias">
+      <img class="slide s-back" src="{{S001}}" alt="Capa do Caderno das Boas Ideias" width="880" height="495">
+      <figure class="s-before"><span class="tagline">antes</span><img class="slide" src="{{S129}}" alt="Página do caderno: Antes, eu nunca sei o que postar" width="880" height="495"></figure>
+      <figure class="s-after"><span class="tagline y">depois</span><img class="slide" src="{{S130}}" alt="Página do caderno: Depois, tem conteúdo aqui" width="880" height="495"></figure>
+      <span class="px bulb" data-sprite="bulb" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+<div class="prism-line" aria-hidden="true"></div>
+
+<!-- DOR · preto -->
+<section class="band b-black">
+  <div class="wrap pain">
+    <div class="stack">
+      <h2>O conteúdo que você procura pode estar numa <span class="o">conversa que teve ontem.</span></h2>
+    </div>
+    <div class="stack">
+      <div class="prose">
+        <p>Você olha o que os concorrentes estão publicando, salva referências, acompanha tendências e pergunta para a inteligência artificial o que deveria postar.</p>
+        <p>Ideias aparecem. Mas muitas delas <strong>poderiam ter sido publicadas por qualquer pessoa do seu mercado.</strong></p>
+      </div>
+      <div class="sources" aria-label="De onde vêm as ideias">
+        <div class="src no"><span class="x">✕</span><span>O que o concorrente postou</span></div>
+        <div class="src no"><span class="x">✕</span><span>A trend da semana</span></div>
+        <div class="src no"><span class="x">✕</span><span>“Me dê 50 ideias de post”</span></div>
+        <div class="src yes"><span class="x">✓</span><span>O que você já vive, observa, consome, pensa e escuta</span></div>
+      </div>
+      <p class="prose">Uma pergunta de cliente, uma conversa, um filme, uma decisão de trabalho ou uma situação aparentemente banal podem virar conteúdo quando você aprende a perceber o que existe ali.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTODO · branco -->
+<section class="band b-white">
+  <div class="wrap">
+    <div class="head">
+      <span class="ribbon">o método em quatro movimentos</span>
+      <h2>Da cena <em class="s">ao conteúdo</em></h2>
+    </div>
+    <div class="steps">
+      <article class="step"><img class="slide" src="{{S033}}" alt="Página do caderno: Cena, o que aconteceu?" loading="lazy" width="880" height="495"><span class="n">1 · Cena</span><p>O que aconteceu?</p></article>
+      <article class="step"><img class="slide" src="{{S036}}" alt="Página do caderno: Leitura, o que tu percebeu?" loading="lazy" width="880" height="495"><span class="n">2 · Leitura</span><p>O que essa situação fez você perceber?</p></article>
+      <article class="step"><img class="slide" src="{{S040}}" alt="Página do caderno: Ponte, onde isso encontra teu trabalho, público ou posicionamento?" loading="lazy" width="880" height="495"><span class="n">3 · Ponte</span><p>Onde isso encontra o seu trabalho, seu público ou seu posicionamento?</p></article>
+      <article class="step"><img class="slide" src="{{S042}}" alt="Página do caderno: Forma, qual é a melhor maneira de contar essa ideia?" loading="lazy" width="880" height="495"><span class="n">4 · Forma</span><p>Qual é a melhor maneira de transformar essa ideia em conteúdo?</p></article>
+    </div>
+    <p class="method-foot">A situação vivida funciona como <span class="mark">matéria-prima</span>. O conteúdo ganha forma a partir da leitura que você faz dela.</p>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero aprender o método por R$ 67 →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+  </div>
+</section>
+
+<!-- PRÁTICA · preto -->
+<section class="band b-black">
+  <div class="wrap practice">
+    <div class="stack">
+      <span class="ribbon">na prática, como funciona?</span>
+      <h2>Uma cena. <em class="s">Cinco conteúdos.</em></h2>
+      <p class="prose">Durante as aulas, você acompanha situações comuns sendo transformadas em conteúdo. A ideia é ver o raciocínio acontecendo para depois fazer o mesmo com o seu próprio repertório.</p>
+    </div>
+    <div>
+      <img class="slide scene-img" src="{{S100}}" alt="Página do caderno: Uma cena. Cinco possibilidades. Zero ideias inventadas do nada." loading="lazy" width="880" height="495">
+      <div class="outs"><span>Reels</span><span>Carrossel</span><span>Stories</span><span>Opinião</span><span>Conteúdo de conversão</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTREGÁVEIS · branco -->
+<section class="band b-white">
+  <div class="wrap kit">
+    <div class="stack" style="align-content:start">
+      <span class="ribbon">tudo que vem no kit</span>
+      <h2>O que você <span class="hi">recebe</span></h2>
+      <p class="prose">Material para estudar, rabiscar e voltar sempre que a página em branco aparecer.</p>
+      <div class="tools" aria-hidden="true">
+        <svg viewBox="0 0 320 300">
+          <defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter></defs>
+          <g filter="url(#wob)">
+            <path class="ink thin" d="M76 64 L64 70 Q60 170 84 268 L96 276 M70 66 Q66 168 90 272 M84 270 Q170 262 254 252 M90 276 Q172 268 258 258 M96 280 Q174 272 260 262 L254 250"/>
+            <path class="page" d="M78 62 Q160 56 236 50 Q244 150 254 250 Q172 258 96 268 Q86 165 78 62Z"/>
+            <path class="ink" d="M78 62 Q160 56 236 50 Q240 98 244 150 Q248 200 254 250 Q172 258 96 268 Q88 214 84 160 Q80 110 78 62Z"/>
+            <g class="rings"></g>
+          </g>
+          <g class="lines"></g>
+          <g class="pencil">
+            <g transform="rotate(-38)">
+              <path class="ink body" d="M0 0 L16 -6 L104 -6 L104 6 L16 6 Z"/>
+              <path class="ink thin" d="M16 -6 Q12 0 16 6 M16 0 L104 0"/>
+              <path d="M0 0 L6 -2.3 L6 2.3 Z" fill="#111114"/>
+              <path class="ink eraser" d="M104 -6 L118 -6 Q124 0 118 6 L104 6 Z"/>
+              <path class="ink thin" d="M108 -6 L108 6 M112 -6 L112 6"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+    </div>
+    <ul class="check">
+      <li><div><b>Aulas gravadas</b><span>Todo o conteúdo disponível para assistir no seu ritmo.</span></div></li>
+      <li><div><b>O Caderno das Boas Ideias</b><span>Material digital preenchível para acompanhar as aulas e registrar suas ideias.</span></div></li>
+      <li><div><b>Versão para impressão</b><span>Caso você prefira pensar escrevendo no papel.</span></div></li>
+      <li><div><b>Briefing de conteúdo</b><span>Para organizar público, posicionamento, experiências, opiniões e referências antes de criar.</span></div></li>
+      <li><div><b>Matriz Da Cena ao Conteúdo</b><span>Uma estrutura prática para desenvolver cada ideia do início ao fim.</span></div></li>
+      <li><div><b>Exercício acompanhado</b><span>Para aplicar o método junto com a aula.</span></div></li>
+      <li><div><b>+200 ganchos</b><span>Estruturas para transformar boas ideias em aberturas mais atrativas.</span></div></li>
+      <li class="bonus"><div><b>Bônus: Como usar IA sem deixar seu conteúdo com cara de IA</b><span>Incluído no mesmo valor.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- POR DENTRO · preto -->
+<section class="band b-black">
+  <div class="wrap">
+    <div class="head">
+      <span class="ribbon">por dentro do material</span>
+      <h2>Folheie <em class="s">o caderno</em></h2>
+      <p class="pages-count"><b>+130</b> páginas de conteúdo</p>
+      <p class="prose">São mais de 130 páginas de conteúdo, do briefing ao primeiro post pronto. Aqui vão algumas.</p>
+    </div>
+  </div>
+  <div class="strip" tabindex="0" aria-label="Páginas do caderno, role para o lado">
+    <img class="slide" src="{{S004}}" alt="Tem conteúdo aqui" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S011}}" alt="O briefing não é prova, é inventário" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S046}}" alt="Onde as boas ideias estão" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S058}}" alt="Agora tu está capturando, não desenvolvendo, não publicando" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S064}}" alt="Detalhe dá material" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S070}}" alt="A ponte" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S079}}" alt="Forma" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S111}}" alt="Como parar de começar do zero" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S116}}" alt="Regra simples: 5 + 3 + 1" loading="lazy" width="880" height="495">
+    <img class="slide" src="{{S135}}" alt="Provavelmente tua próxima boa ideia já está acontecendo" loading="lazy" width="880" height="495">
+  </div>
+  <div class="wrap"><p class="fine" style="margin-top:14px">← arraste para ver mais páginas →</p>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero as 130 páginas do Caderno →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+  </div>
+</section>
+
+<!-- IA · branco -->
+<section class="band b-white">
+  <div class="wrap ai">
+    <div class="stack">
+      <span class="ribbon">bônus</span>
+      <h2>Sim. A gente usa IA na Prisssma. <em class="s">E você também pode usar.</em></h2>
+      <div class="prose">
+        <p>A diferença aparece naquilo que você leva para a ferramenta.</p>
+        <p>No módulo bônus, você aprende a chegar na IA com briefing, repertório, experiências, percepção, público e posicionamento. Ela ajuda a encontrar novas pontes, testar caminhos e lapidar uma ideia que já tem alguma coisa sua dentro.</p>
+        <p><strong>A IA entra para ampliar seu pensamento, não para substituir ele.</strong></p>
+      </div>
+    </div>
+    <div class="prompts">
+      <figure class="pr bad"><span class="tagline">o pedido genérico</span><img class="slide" src="{{S122}}" alt="Página do caderno: Pedido genérico, me dê 50 ideias para uma nutricionista" loading="lazy" width="880" height="495"></figure>
+      <figure class="pr good"><span class="tagline y">o pedido que sai do Caderno</span><img class="slide" src="{{S124}}" alt="Página do caderno: Pedido melhor, com cena, leitura, briefing, público e posicionamento" loading="lazy" width="880" height="495"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- GABI · preto -->
+<section class="band b-black" id="gabi">
+  <div class="wrap teacher">
+    <div class="photo">
+      <figure><img src="{{GABI}}" alt="Gabriela Martins sentada perto de uma janela, de óculos, sorrindo para a câmera" width="665" height="1000"></figure>
+      <span class="ribbon">“marketing, negócios e uma quantidade questionável de opiniões”</span>
+      <span class="px heart" data-sprite="heart" aria-hidden="true"></span>
+    </div>
+    <div class="stack">
+      <span class="ribbon y">quem vai te ensinar</span>
+      <h2>Gabriela Martins</h2>
+      <p class="role">Estrategista e cofundadora da Prisssma</p>
+      <div class="prose">
+        <p>A Gabi passa os dias dentro do conteúdo dos outros: neurologistas, dermatologistas, arquitetas, terapeutas. Gente com muito conhecimento e pouca paciência para fórmula pronta.</p>
+        <p>O Caderno das Boas Ideias nasceu desse trabalho: observar situações, conversas, referências e experiências e descobrir <strong>o que pode virar conteúdo antes de recorrer a fórmulas prontas.</strong></p>
+        <p>Nas aulas, é ela quem conduz o método Da Cena ao Conteúdo e mostra o raciocínio acontecendo, do mesmo jeito que faz com os clientes da agência.</p>
+      </div>
+      <div class="video-slot">
+        <span class="play" aria-hidden="true"></span>
+        <div><b>Vídeo da Gabi</b><p class="fine">Espaço reservado para o vídeo de apresentação (em gravação).</p></div>
+      </div>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero aprender com a Gabi →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA · branco -->
+<section class="band b-white">
+  <div class="wrap">
+    <div class="head">
+      <span class="ribbon">esse raciocínio já está no ar</span>
+      <h2>Perfis que a Prisssma <em class="s">acompanha</em></h2>
+      <p class="prose">Clientes da agência que constroem conteúdo a partir do próprio repertório, o mesmo raciocínio que você aprende no Caderno. Seguidores no Instagram, antes e agora.</p>
+    </div>
+    <div class="profiles">
+      <article class="prof"><p class="who">Dr. Alexandre Bussinger<span>Neurologista · @neuro.alexandre</span></p><div class="growth"><span class="from">3.155</span><span class="arr">→</span><span class="to">17 mil</span></div><p class="when">desde mai/2024 · 5x mais seguidores</p></article>
+      <article class="prof"><p class="who">Prof. Ana Pedroso<span>Terapeuta · @anapedrosoprof</span></p><div class="growth"><span class="from">20,9 mil</span><span class="arr">→</span><span class="to">47,4 mil</span></div><p class="when">desde abr/2024 · mais que dobrou</p></article>
+      <article class="prof"><p class="who">Dra. Heloísa de Avó<span>Dermatologista · @dra.heloisadavo</span></p><div class="growth"><span class="from">33,3 mil</span><span class="arr">→</span><span class="to">38,4 mil</span></div><p class="when">desde abr/2024 · +5,1 mil seguidores</p></article>
+    </div>
+    <div class="beforeafter">
+      <figure class="shot"><img src="{{DEPO1}}" alt="Perfil do Dr. Alexandre Bussinger em maio de 2024 com 3.155 seguidores e hoje com 17 mil" loading="lazy"><figcaption>@neuro.alexandre, antes e agora</figcaption></figure>
+      <figure class="shot"><img src="{{DEPO2}}" alt="Perfil da Prof. Ana Pedroso em abril de 2024 com 20,9 mil seguidores e hoje com 47,4 mil, ao lado de mensagem de agradecimento" loading="lazy"><figcaption>@anapedrosoprof, antes e agora</figcaption></figure>
+    </div>
+    <div class="head" style="margin:76px 0 32px">
+      <span class="ribbon">o que chega no WhatsApp</span>
+      <h2>Quando o conteúdo <em class="s">tem a cara da pessoa</em></h2>
+    </div>
+    <div class="prints">
+      <figure class="chat"><img src="{{DEPO3}}" alt="Mensagem do Dr. Ale: vocês se inspiram em pessoas que valem a pena, quando veem valor no trabalho pra além dos números" loading="lazy"><figcaption>Dr. Ale, neurologista</figcaption></figure>
+      <figure class="chat"><img src="{{DEPO7}}" alt="Mensagens de cliente: sinto que cada vez mais o perfil tem verdade, antes tava muito artificial, tô amando essa fase" loading="lazy"><figcaption>“antes tava mt artificial”</figcaption></figure>
+      <figure class="chat"><img src="{{DEPO8}}" alt="Mensagens de cliente: falei total, me identifiquei demais, mas claro que falou muito melhor do que eu falaria" loading="lazy"><figcaption>“me identifiquei demais”</figcaption></figure>
+      <figure class="chat"><img src="{{DEPO5}}" alt="Mensagens de cliente: eu não tô mais pegando em SI, sem horário, pessoal tá tudo indo pelo insta" loading="lazy"><figcaption>agenda cheia pelo Instagram</figcaption></figure>
+      <figure class="chat"><img src="{{DEPO4}}" alt="Mensagens de cliente: ai gente, emocionei aqui, tá lindo demais esse, muito obrigada, aprovado" loading="lazy"><figcaption>“emocionei aqui”</figcaption></figure>
+      <figure class="chat"><img src="{{DEPO6}}" alt="Mensagens de cliente: ficou muito delicado e entregando a mensagem certa" loading="lazy"><figcaption>“a mensagem certa”</figcaption></figure>
+    </div>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero conteúdo com a minha cara →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+  </div>
+</section>
+
+<!-- PARA QUEM · preto -->
+<section class="band b-black">
+  <div class="wrap forwho">
+    <div class="stack" style="align-content:start">
+      <span class="ribbon">para quem é</span>
+      <h2>Para quem produz conteúdo para si, para uma marca ou para clientes e sente que:</h2>
+    </div>
+    <div class="stack">
+      <ul class="pains">
+        <li>trava toda vez que precisa decidir o que publicar;</li>
+        <li>acaba repetindo os mesmos assuntos;</li>
+        <li>depende demais de referências externas;</li>
+        <li>recebe ideias da IA, mas não se reconhece nelas;</li>
+        <li>tem conhecimento e experiências, mas não sabe transformá-los em conteúdo;</li>
+        <li>quer construir uma comunicação mais autoral.</li>
+      </ul>
+      <p class="quote">A sua rotina não precisa ser extraordinária. <span class="q2">Basta perceber melhor os ativos que você já possui.</span></p>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero aprender a perceber →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MUDANÇA · branco -->
+<section class="band b-white">
+  <div class="wrap change">
+    <div class="stars" aria-hidden="true"><span class="px" data-sprite="star" style="width:34px"></span><span class="px" data-sprite="star" style="width:22px"></span></div>
+    <h2>O que começa a mudar <em class="s">depois?</em></h2>
+    <p class="big">Você passa a reconhecer pautas com mais facilidade e ganha um processo para desenvolvê-las. Em vez de esperar uma ideia aparecer do nada, você começa a construir um repertório próprio de cenas, leituras e possibilidades de conteúdo.</p>
+    <p class="big"><strong>É essa autonomia que o Caderno quer desenvolver.</strong></p>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno das Boas Ideias →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+  </div>
+</section>
+
+<!-- OFERTA · preto -->
+<section class="band b-black" id="comprar">
+  <div class="wrap offer">
+    <div class="stack">
+      <span class="px" data-sprite="bulb" style="width:64px" aria-hidden="true"></span>
+      <h2>Comece a encontrar conteúdo no que <span class="hi">já acontece ao seu redor.</span></h2>
+      <p class="prose">Acesso enviado por e-mail logo após a confirmação do pagamento.</p>
+    </div>
+    <div class="ticket">
+      <p style="font-family:var(--f-display);text-transform:uppercase;font-size:1.2rem;letter-spacing:.04em">Você recebe</p>
+      <ul>
+        <li>Aulas gravadas</li>
+        <li>O Caderno das Boas Ideias digital e preenchível</li>
+        <li>Versão para impressão</li>
+        <li>Briefing de conteúdo</li>
+        <li>Matriz Da Cena ao Conteúdo</li>
+        <li>Exercício acompanhado</li>
+        <li>+200 ganchos</li>
+        <li>Módulo bônus sobre inteligência artificial</li>
+      </ul>
+      <div class="bigprice"><b>R$ 67</b><span>investimento único</span></div>
+      <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno por R$ 67 →</a>
+      <p class="fine">Pagamento processado pela Kiwify · 7 dias de garantia</p>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA · branco -->
+<section class="band b-white" style="padding-block:clamp(48px,7vw,80px)">
+  <div class="wrap guarantee">
+    <svg class="seal" viewBox="0 0 150 150" role="img" aria-label="Selo de 7 dias de garantia">
+      <defs><path id="circ" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs>
+      <circle cx="75" cy="75" r="72" fill="#FFC93C" stroke="#0E0E10" stroke-width="3"/>
+      <circle cx="75" cy="75" r="44" fill="none" stroke="#0E0E10" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <text font-size="13" letter-spacing="3" fill="#0E0E10"><textPath href="#circ">GARANTIA DE 7 DIAS · GARANTIA ·</textPath></text>
+      <text x="75" y="86" text-anchor="middle" font-size="46" fill="#0E0E10">7</text>
+      <text x="75" y="104" text-anchor="middle" font-size="13" letter-spacing="2" fill="#0E0E10">DIAS</text>
+    </svg>
+    <div class="stack" style="gap:12px">
+      <h2 style="font-size:clamp(2rem,4.6vw,3rem)">Você tem 7 dias para <em class="s">conhecer o Caderno</em></h2>
+      <p class="prose">Acesse as aulas, conheça o material e veja se a proposta faz sentido para você. Se decidir que não é para você dentro desse período, basta solicitar o reembolso seguindo as condições da plataforma.</p>
+    </div>
+    <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero acessar o Caderno</a>
+  </div>
+</section>
+
+<!-- FAQ · preto -->
+<section class="band b-black">
+  <div class="wrap">
+    <div class="head" style="margin-bottom:28px">
+      <span class="ribbon">perguntas que sempre aparecem</span>
+      <h2>Dúvidas <em class="s">frequentes</em></h2>
+    </div>
+    <div class="faq">
+      <details open><summary>As aulas são ao vivo?</summary><p>Não. As aulas são gravadas e ficam disponíveis para você assistir no seu ritmo.</p></details>
+      <details><summary>Por quanto tempo terei acesso?</summary><p>O acesso é de 90 dias após a compra.</p></details>
+      <details><summary>Posso imprimir o caderno?</summary><p>Sim. Você recebe uma versão digital preenchível e outra preparada para impressão.</p></details>
+      <details><summary>Preciso trabalhar com marketing?</summary><p>Não. O método pode ser usado por profissionais, especialistas, criadores, empreendedores e também por quem produz conteúdo para clientes.</p></details>
+      <details><summary>Vou receber ideias prontas?</summary><p>Não. Você recebe perguntas, estruturas, exercícios e exemplos para aprender a desenvolver suas próprias ideias.</p></details>
+      <details><summary>Preciso parar de usar inteligência artificial?</summary><p>Não. Inclusive, existe um módulo inteiro dedicado a isso. A proposta é ensinar você a chegar à ferramenta com mais repertório e direção, para que ela ajude a desenvolver suas ideias sem transformar tudo em mais uma resposta genérica.</p></details>
+      <details><summary>Tem garantia?</summary><p>Sim. Você tem 7 dias de garantia a partir da compra.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Prisssma Lab. Todos os direitos reservados.</span>
+    <span><a href="https://prisssma.com/">Termos de Uso</a> · <a href="https://prisssma.com/">Política de Privacidade</a></span>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div><b>R$ 67</b><small>pagamento único · 7 dias de garantia</small></div>
+  <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero o meu →</a>
+</div>
+
+<script>
+/* sprites em pixel art, no estilo dos posts da prisssma.lab */
+(function(){
+  var C={N:"#2A2E78",L:"#8E91CF",X:"#0E0E10",Y:"#FFC93C",O:"#F59A23",W:"#FFFFFF",G:"#9A9AA3",R:"#E3262B",B:"#2F5BEA",P:"#F7B7A3"};
+  var S={
+    bulb:["....XXXX....","..XXYYYYXX..",".XYYWWYYYYX.",".XYWWYYYYYX.","XYYWYYYYYYYX","XYYYYYYYYOYX","XYYYYYYYYOYX",".XYYYYYYOYX.",".XYYYYYYYYX.","..XYYYYYYX..","...XYYYYX...","...XGGGGX...","...XXXXXX...","...XGGGGX...","....XXXX...."],
+    skull:["..XXXXXX..",".XWWWWWWX.","XWWWWWWWWX","XWXXWWXXWX","XWXXWWXXWX","XWWWXXWWWX",".XWWWWWWX.","..XWXWXWX.","..XXXXXXX."],
+    heart:[".XX...XX.","XRRX.XRRX","XRWRXRRRX","XRRRRRRRX",".XRRRRRX.","..XRRRX..","...XRX...","....X...."],
+    star:["...X...","...X...","..XYX..","XXYYYXX","..XYX..","...X...","...X..."],
+    notebook:[".X..X..X..X..X..","XWXXWXXWXXWXXWXX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XWWWWWWWWWWWWWWX","XXXXXXXXXXXXXXXX"],
+    pencil:["..........XX",".........XRRX","........XRRX.",".......XYYX..","......XYYX...",".....XYYX....","....XYYX.....","...XYYX......","..XPPX.......",".XPPX........","XXXX.........","XX..........."]
+  };
+  document.querySelectorAll("[data-sprite]").forEach(function(el){
+    var m=S[el.dataset.sprite]; if(!m) return;
+    var w=Math.max.apply(null,m.map(function(r){return r.length})), h=m.length, r="";
+    m.forEach(function(row,y){for(var x=0;x<row.length;x++){var c=C[row[x]]; if(c) r+='<rect x="'+x+'" y="'+y+'" width="1.02" height="1.02" fill="'+c+'"/>';}});
+    el.innerHTML='<svg viewBox="0 0 '+w+' '+h+'" shape-rendering="crispEdges">'+r+'</svg>';
+  });
+})();
+
+/* caderno desenhado: lápis escrevendo */
+(function(){
+  var root=document.querySelector(".tools svg"); if(!root) return;
+  var NS="http://www.w3.org/2000/svg", rings=root.querySelector(".rings"), lines=root.querySelector(".lines"), pen=root.querySelector(".pencil");
+  // espiral no topo
+  for(var i=0;i<7;i++){
+    var x=92+i*22.5, y=61-i*1.4;
+    var r=document.createElementNS(NS,"path");
+    r.setAttribute("class","ink");
+    r.setAttribute("d","M"+(x-5)+" "+(y+7)+" C"+(x-9)+" "+(y-10)+" "+(x+9)+" "+(y-14)+" "+(x+5)+" "+(y+4));
+    rings.appendChild(r);
+    var h=document.createElementNS(NS,"circle"); h.setAttribute("cx",x-4); h.setAttribute("cy",y+8); h.setAttribute("r",2.6); h.setAttribute("fill","#111114"); rings.appendChild(h);
+  }
+  // escreve "Caderno das Boas Ideias" à mão: cada linha é revelada da esquerda pra direita, com a ponta do lápis no fim do traço
+  var specs=[["Caderno",102,116,40],["das Boas",108,166,40],["Ideias",106,224,50]], items=[], ANG=-2.6*Math.PI/180;
+  function rot(x,y,cx,cy){var dx=x-cx,dy=y-cy;return {x:cx+dx*Math.cos(ANG)-dy*Math.sin(ANG),y:cy+dx*Math.sin(ANG)+dy*Math.cos(ANG)}}
+  function place(pt){pen.setAttribute("transform","translate("+pt.x.toFixed(1)+" "+pt.y.toFixed(1)+")")}
+  function build(){
+    specs.forEach(function(sp,i){
+      var g=document.createElementNS(NS,"g"); g.setAttribute("transform","rotate(-2.6 "+sp[1]+" "+sp[2]+")");
+      var cp=document.createElementNS(NS,"clipPath"); cp.setAttribute("id","wr"+i);
+      var r=document.createElementNS(NS,"rect"); r.setAttribute("x",sp[1]-4); r.setAttribute("y",sp[2]-sp[3]*1.1); r.setAttribute("height",sp[3]*1.5); r.setAttribute("width",0); cp.appendChild(r);
+      var t=document.createElementNS(NS,"text"); t.setAttribute("x",sp[1]); t.setAttribute("y",sp[2]); t.setAttribute("class","hw"); t.setAttribute("font-size",sp[3]); t.textContent=sp[0]; t.setAttribute("clip-path","url(#wr"+i+")");
+      g.appendChild(cp); g.appendChild(t); lines.appendChild(g);
+      items.push({r:r,w:t.getComputedTextLength()+6,x:sp[1],y:sp[2],h:sp[3]});
+    });
+  }
+  function tip(it,f){var x=it.x+it.w*f, y=it.y-it.h*(.28+.22*Math.sin(f*it.w/5.5)); return rot(x,y,it.x,it.y)}
+  function start(){
+    build();
+    var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce){items.forEach(function(it){it.r.setAttribute("width",it.w+8)}); var l=items[items.length-1]; place(tip(l,1)); return;}
+    var SPEED=95, GAP=320, HOLD=1600, FADE=500, segs=[], acc=0;
+    items.forEach(function(it){var d=it.w/SPEED*1000; segs.push([acc,acc+d]); acc+=d+GAP});
+    var total=acc+HOLD+FADE, t0=null;
+    function frame(ts){
+      if(t0===null) t0=ts; var t=(ts-t0)%total, placed=false;
+      items.forEach(function(it,i){
+        var st=segs[i][0], en=segs[i][1];
+        if(t>=en){it.r.setAttribute("width",it.w+8)}
+        else if(t>=st){var f=(t-st)/(en-st); it.r.setAttribute("width",it.w*f+4); place(tip(it,f)); placed=true}
+        else it.r.setAttribute("width",0);
+        if(!placed && t>=en && t<en+GAP && items[i+1]){var a=tip(it,1), b=tip(items[i+1],0), g=(t-en)/GAP; place({x:a.x+(b.x-a.x)*g, y:a.y+(b.y-a.y)*g-Math.sin(g*Math.PI)*12}); placed=true}
+      });
+      lines.style.opacity = t>total-FADE ? 1-(t-(total-FADE))/FADE : 1;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  var go=false; function once(){if(!go){go=true;start()}}
+  if(document.fonts&&document.fonts.load){document.fonts.load('600 34px "Caveat"').then(once,once); setTimeout(once,2500)} else once();
+})();
+</script>
