@@ -2,3 +2,6 @@
 .vercel
 .env*
 artifact.html
+wp/*-no-ar-*.html
+wp/*.zip
+Icon?

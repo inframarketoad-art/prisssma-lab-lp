@@ -1,19 +1,23 @@
-"""Gera wp/caderno.html (versão leve da LP prisssma.com/caderno) a partir da página que está no ar.
+"""Gera wp/cadernob/ (variação leve da LP prisssma.com/caderno) a partir da página que está no ar.
 
-- As imagens embutidas em base64 viram arquivos WebP em caderno-img/, servidos pela Vercel
-  (https://prisssma-lab-lp.vercel.app/caderno-img/...). Abaixo da primeira dobra: loading="lazy".
+A pasta cadernob/ inteira (index.html + img/) sobe para public_html/ na Hostinger e fica em
+prisssma.com/cadernob/ (pasta real: o servidor entrega antes do WordPress).
+
+- As imagens embutidas em base64 viram arquivos WebP em img/, com caminho relativo.
+  Abaixo da primeira dobra: loading="lazy".
 - Pixel: PageView no carregamento; ViewContent só com engajamento (15 s ou 25% de rolagem);
   CliqueComprar no clique de qualquer botão da Kiwify.
 - UTMs e fbclid da URL do anúncio são repassados para o link do checkout.
 
-Uso: python3 -I wp/slim.py wp/caderno-no-ar-AAAA-MM-DD.html
+Uso: python3 -I wp/slim.py <html de origem> <pasta de saída, ex. caderno-b> <variante, ex. B>
 """
 import base64, hashlib, os, re, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = sys.argv[1]
-OUT_DIR = os.path.join(ROOT, 'caderno-img')
-BASE_URL = 'https://prisssma-lab-lp.vercel.app/caderno-img/'
+SRC, FOLDER, VARIANT = sys.argv[1], sys.argv[2], sys.argv[3]
+PAGE_DIR = os.path.join(ROOT, 'wp', FOLDER)
+OUT_DIR = os.path.join(PAGE_DIR, 'img')
+BASE_URL = 'img/'
 os.makedirs(OUT_DIR, exist_ok=True)
 s = open(SRC, encoding='utf-8').read()
 
@@ -38,6 +42,9 @@ def to_file(m):
     return BASE_URL + name
 s = re.sub(r'data:image/[a-z]+;base64,[A-Za-z0-9+/=]+', to_file, s)
 
+# no celular a barra fixa de compra já aparece; o botão do topo encavalava no logo
+s = s.replace('</style>', '@media (max-width:600px){.mini-cta{display:none}}\n</style>', 1)
+
 # 2) imagens abaixo da primeira dobra carregam sob demanda
 fold = s.index('<!-- DOR')
 def lazy(m):
@@ -57,7 +64,7 @@ fbq('track','PageView');
 /* ViewContent = quem de fato consumiu a página: 15 segundos nela OU rolou 25%.
    É esse evento que a campanha de otimização por visualização de conteúdo deve usar. */
 (function(){
-  var sent=false, PRODUTO={content_name:'Caderno das Boas Ideias',content_type:'product',content_ids:['caderno-boas-ideias'],value:67,currency:'BRL'};
+  var sent=false, PRODUTO={content_name:'Caderno das Boas Ideias',content_type:'product',content_ids:['caderno-boas-ideias'],value:67,currency:'BRL',lp_variant:'"+VARIANT+"'};
   function vc(motivo){ if(sent) return; sent=true; fbq('track','ViewContent',PRODUTO); }
   setTimeout(function(){ vc('tempo') }, 15000);
   addEventListener('scroll', function(){
@@ -66,14 +73,22 @@ fbq('track','PageView');
   /* clique em qualquer botão de compra (separa "clicou" de "carregou o checkout" na Kiwify) */
   document.addEventListener('click', function(e){
     var a=e.target.closest && e.target.closest('a[href*="pay.kiwify.com.br"]');
-    if(a) fbq('trackCustom','CliqueComprar',{value:67,currency:'BRL'});
+    if(a) fbq('trackCustom','CliqueComprar',{value:67,currency:'BRL',lp_variant:'"+VARIANT+"'});
   });
 })();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2236850833905931&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->"""
-s = re.sub(r'<!-- Meta Pixel - Prisssma -->.*?<!-- End Meta Pixel -->', lambda m: PIXEL, s, count=1, flags=re.S)
+PIXEL = PIXEL.replace('"+VARIANT+"', VARIANT)
+# remove noindex antigo (é recolocado no topo) e devolve </head><body> se estavam dentro do bloco do pixel
+s = s.replace('<meta name="robots" content="noindex">', '')
+had_head = '</head>' in re.search(r'<!-- Meta Pixel - Prisssma -->.*?<!-- End Meta Pixel -->', s, re.S).group(0)
+s = re.sub(r'<!-- Meta Pixel - Prisssma -->.*?<!-- End Meta Pixel -->', lambda m: PIXEL + ('\n</head>\n<body>' if had_head else ''), s, count=1, flags=re.S)
+assert s.count('</head>') == 1 and s.count('<body') == 1
 assert "fbq('track','ViewContent',PRODUTO)" in s
+
+# variação não deve competir com /caderno no Google
+s = s.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
 
 # 4) UTMs do anúncio seguem para o checkout da Kiwify
 UTM = """<script>
@@ -90,8 +105,8 @@ UTM = """<script>
 </body>"""
 s = s.replace('</body>', UTM, 1)
 
-out = os.path.join(ROOT, 'wp', 'caderno.html')
+out = os.path.join(PAGE_DIR, 'index.html')
 open(out, 'w', encoding='utf-8').write(s)
 total = sum(os.path.getsize(os.path.join(OUT_DIR, n)) for n in set(names.values()))
-print(f'{len(names)} imagens -> caderno-img/ ({total//1024} KB no total)')
+print(f'{len(names)} imagens -> {FOLDER}/img/ ({total//1024} KB no total)')
 print(f'HTML: {len(s.encode())//1024} KB (antes: {os.path.getsize(SRC)//1024} KB)')

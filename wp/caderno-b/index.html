@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Aprenda, na prática, a transformar situações comuns do seu dia em conteúdos autorais. Aulas gravadas + caderno digital por R$ 67.">
 <title>Caderno das Boas Ideias</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&family=Caveat:wght@600&family=Gochi+Hand&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Figtree:wght@400;500;600;700;800&amp;family=Caveat:wght@600&amp;family=Gochi+Hand&amp;family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&amp;display=swap">
 <style>
 /* Layout: ID da prisssma.lab mesclada com branco. Dobras alternadas (branco, preto, vermelho, azul, cinza), títulos condensados em caixa alta, fitas vermelhas, pixel art e o degradê do cristal (vermelho → laranja → azul). */
 :root{
@@ -333,6 +333,7 @@ footer{border-top:1px solid rgba(255,255,255,.14)}
   @keyframes blink{50%{filter:brightness(1.25) drop-shadow(0 0 10px #FFC93C)}}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (max-width:600px){.mini-cta{display:none}}
 </style>
 <!-- Meta Pixel - Prisssma -->
 <script>
@@ -342,7 +343,7 @@ fbq('track','PageView');
 /* ViewContent = quem de fato consumiu a página: 15 segundos nela OU rolou 25%.
    É esse evento que a campanha de otimização por visualização de conteúdo deve usar. */
 (function(){
-  var sent=false, PRODUTO={content_name:'Caderno das Boas Ideias',content_type:'product',content_ids:['caderno-boas-ideias'],value:67,currency:'BRL'};
+  var sent=false, PRODUTO={content_name:'Caderno das Boas Ideias',content_type:'product',content_ids:['caderno-boas-ideias'],value:67,currency:'BRL',lp_variant:'B'};
   function vc(motivo){ if(sent) return; sent=true; fbq('track','ViewContent',PRODUTO); }
   setTimeout(function(){ vc('tempo') }, 15000);
   addEventListener('scroll', function(){
@@ -351,7 +352,7 @@ fbq('track','PageView');
   /* clique em qualquer botão de compra (separa "clicou" de "carregou o checkout" na Kiwify) */
   document.addEventListener('click', function(e){
     var a=e.target.closest && e.target.closest('a[href*="pay.kiwify.com.br"]');
-    if(a) fbq('trackCustom','CliqueComprar',{value:67,currency:'BRL'});
+    if(a) fbq('trackCustom','CliqueComprar',{value:67,currency:'BRL',lp_variant:'B'});
   });
 })();
 </script>
@@ -361,43 +362,75 @@ fbq('track','PageView');
 <body>
 
 
+
+
 <!-- logo cristal -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3262B"/><stop offset=".5" stop-color="#F59A23"/><stop offset="1" stop-color="#2F5BEA"/></linearGradient>
-    <symbol id="crystal" viewBox="0 0 40 48"><path d="M20 2 36 16 30 44 8 40 4 14Z M20 2 18 24 30 44 M4 14 18 24 36 16 M18 24 8 40" fill="none" stroke="url(#pg)" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E3262B"></stop><stop offset=".5" stop-color="#F59A23"></stop><stop offset="1" stop-color="#2F5BEA"></stop></linearGradient>
+    <symbol id="crystal" viewBox="0 0 40 48"><path d="M20 2 36 16 30 44 8 40 4 14Z M20 2 18 24 30 44 M4 14 18 24 36 16 M18 24 8 40" fill="none" stroke="url(#pg)" stroke-width="2" stroke-linejoin="round"></path></symbol>
   </defs>
 </svg>
 
 <!-- HERO · branco -->
 <header class="b-white">
   <div class="wrap top">
-    <a class="brand" href="#" aria-label="prisssma.lab"><img class="brand-icon" src="https://prisssma-lab-lp.vercel.app/caderno-img/01-ae036c31b9.webp" alt="" width="24" height="36"><img class="brand-word" src="https://prisssma-lab-lp.vercel.app/caderno-img/02-e5eb7e1db9.webp" alt="Agência Prisssma" width="220" height="38"></a>
+    <a class="brand" href="#" aria-label="prisssma.lab"><img class="brand-icon" src="img/01-ae036c31b9.webp" alt="" width="24" height="36"><img class="brand-word" src="img/02-e5eb7e1db9.webp" alt="Agência Prisssma" width="220" height="38"></a>
     <a class="mini-cta" href="https://pay.kiwify.com.br/lduscbP">R$ 67 · Quero o meu</a>
   </div>
 </header>
 <section class="b-white">
   <div class="wrap hero">
     <div class="hero-copy">
-      <span class="ribbon">aulas gravadas + caderno digital</span>
-      <h1>O Caderno das <span class="r">Boas Ideias</span><em class="s">da cena ao conteúdo</em></h1>
-      <p class="lead">Aprenda, na prática, a transformar situações comuns do seu dia em <b>conteúdos autorais</b> que posicionam e atraem as pessoas certas.</p>
+      <span class="ribbon">o caderno das boas ideias · aulas gravadas + caderno digital</span>
+      <h1>Sabe muito. <span class="r">Posta pouco.</span><em class="s">da cena ao conteúdo</em></h1>
+      <p class="lead">Pra quem trava na hora de postar, já pagou agência e nunca se reconheceu no próprio perfil. O mesmo processo que a Prisssma usa com os clientes da agência, agora num <b>caderno de R$ 67</b> pra você tirar as boas ideias do papel.</p>
       <div class="deliv"><span>Aulas gravadas</span><span>Caderno preenchível</span><span>+200 ganchos</span><span>Bônus de IA</span></div>
       <div class="buy">
-        <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno por R$ 67 →</a>
+        <a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero destravar meu conteúdo por R$ 67 →</a>
         <div class="price"><small>investimento único</small><b>R$ 67</b></div>
       </div>
       <p class="fine">Garantia de 7 dias · Pagamento processado pela Kiwify</p>
     </div>
     <div class="visual" aria-label="Páginas do Caderno das Boas Ideias">
-      <img class="slide s-back" src="https://prisssma-lab-lp.vercel.app/caderno-img/03-7afc8c3a32.webp" alt="Capa do Caderno das Boas Ideias" width="880" height="495">
-      <figure class="s-before"><span class="tagline">antes</span><img class="slide" fetchpriority="high" src="https://prisssma-lab-lp.vercel.app/caderno-img/04-892ba355c6.webp" alt="Página do caderno: Antes, eu nunca sei o que postar" width="880" height="495"></figure>
-      <figure class="s-after"><span class="tagline y">depois</span><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/05-c0ef994920.webp" alt="Página do caderno: Depois, tem conteúdo aqui" width="880" height="495"></figure>
+      <img class="slide s-back" src="img/03-7afc8c3a32.webp" alt="Capa do Caderno das Boas Ideias" width="880" height="495">
+      <figure class="s-before"><span class="tagline">antes</span><img class="slide" fetchpriority="high" src="img/04-892ba355c6.webp" alt="Página do caderno: Antes, eu nunca sei o que postar" width="880" height="495"></figure>
+      <figure class="s-after"><span class="tagline y">depois</span><img class="slide" src="img/05-c0ef994920.webp" alt="Página do caderno: Depois, tem conteúdo aqui" width="880" height="495"></figure>
       <span class="px bulb" data-sprite="bulb" aria-hidden="true"></span>
     </div>
   </div>
 </section>
-<div class="prism-line" aria-hidden="true"></div>
+<div class="prism-line" aria-hidden="true"></div><section class="band b-black">
+  <div class="wrap">
+    <div class="head">
+      <span class="ribbon">não é promessa, já está no ar</span>
+      <h2>De 3.155 para <em class="s">17 mil seguidores</em></h2>
+      <p class="prose">É o mesmo raciocínio que a Prisssma aplica com neurologista, terapeuta e dermatologista: conteúdo que nasce do repertório da própria pessoa. Seguidores no Instagram, antes e agora.</p>
+    </div>
+    <div class="profiles">
+      <article class="prof"><p class="who">Dr. Alexandre Bussinger<span>Neurologista · @neuro.alexandre</span></p><div class="growth"><span class="from">3.155</span><span class="arr">→</span><span class="to">17 mil</span></div><p class="when">desde mai/2024 · 5x mais seguidores</p></article>
+      <article class="prof"><p class="who">Prof. Ana Pedroso<span>Terapeuta · @anapedrosoprof</span></p><div class="growth"><span class="from">20,9 mil</span><span class="arr">→</span><span class="to">47,4 mil</span></div><p class="when">desde abr/2024 · mais que dobrou</p></article>
+      <article class="prof"><p class="who">Dra. Heloísa de Avó<span>Dermatologista · @dra.heloisadavo</span></p><div class="growth"><span class="from">33,3 mil</span><span class="arr">→</span><span class="to">38,4 mil</span></div><p class="when">desde abr/2024 · +5,1 mil seguidores</p></article>
+    </div>
+    <div class="beforeafter">
+      <figure class="shot"><img src="img/06-6b8c8d6f78.webp" alt="Perfil do Dr. Alexandre Bussinger em maio de 2024 com 3.155 seguidores e hoje com 17 mil" loading="lazy"><figcaption>@neuro.alexandre, antes e agora</figcaption></figure>
+      <figure class="shot"><img src="img/07-2a0e5d2b2a.webp" alt="Perfil da Prof. Ana Pedroso em abril de 2024 com 20,9 mil seguidores e hoje com 47,4 mil, ao lado de mensagem de agradecimento" loading="lazy"><figcaption>@anapedrosoprof, antes e agora</figcaption></figure>
+    </div>
+    <div class="head" style="margin:76px 0 32px">
+      <span class="ribbon">o que chega no WhatsApp</span>
+      <h2>Quando o conteúdo <em class="s">tem a cara da pessoa</em></h2>
+    </div>
+    <div class="prints">
+      <figure class="chat"><img src="img/08-9ff1d3f12a.webp" alt="Mensagem do Dr. Ale: vocês se inspiram em pessoas que valem a pena, quando veem valor no trabalho pra além dos números" loading="lazy"><figcaption>Dr. Ale, neurologista</figcaption></figure>
+      <figure class="chat"><img src="img/09-dc4c95e210.webp" alt="Mensagens de cliente: sinto que cada vez mais o perfil tem verdade, antes tava muito artificial, tô amando essa fase" loading="lazy"><figcaption>“antes tava mt artificial”</figcaption></figure>
+      <figure class="chat"><img src="img/10-91ec925821.webp" alt="Mensagens de cliente: falei total, me identifiquei demais, mas claro que falou muito melhor do que eu falaria" loading="lazy"><figcaption>“me identifiquei demais”</figcaption></figure>
+      <figure class="chat"><img src="img/11-eb577a427d.webp" alt="Mensagens de cliente: eu não tô mais pegando em SI, sem horário, pessoal tá tudo indo pelo insta" loading="lazy"><figcaption>agenda cheia pelo Instagram</figcaption></figure>
+      <figure class="chat"><img src="img/12-e964a7b4eb.webp" alt="Mensagens de cliente: ai gente, emocionei aqui, tá lindo demais esse, muito obrigada, aprovado" loading="lazy"><figcaption>“emocionei aqui”</figcaption></figure>
+      <figure class="chat"><img src="img/13-e7e9c88d54.webp" alt="Mensagens de cliente: ficou muito delicado e entregando a mensagem certa" loading="lazy"><figcaption>“a mensagem certa”</figcaption></figure>
+    </div>
+    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero conteúdo com a minha cara →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
+  </div>
+</section><section class="band b-white"><div class="wrap forwho"><div class="stack" style="align-content:start"><span class="ribbon">se você se reconhece aqui</span><h2>Você tem boas ideias. <em class="s">Elas só nunca saem do caderno.</em></h2></div><div class="stack"><ul class="pains"><li>abre o Instagram, fica olhando pra tela e fecha sem postar nada;</li><li>já pagou agência ou social media e o conteúdo saiu com cara de qualquer um;</li><li>tem um bloco de notas cheio de ideias que nunca viraram post;</li><li>pede “50 ideias de post” pra IA e não se reconhece em nenhuma;</li><li>some do perfil por semanas e, quando volta, não sabe por onde recomeçar;</li><li>vê concorrente que sabe menos que você crescendo mais.</li></ul><p class="quote">O problema nunca foi falta de ideia. <span class="q2">É não ter um processo pra tirar a ideia de dentro de você e transformar em post.</span></p><div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero esse processo por R$ 67 →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div></div></div></section>
 
 <!-- DOR · preto -->
 <section class="band b-black">
@@ -429,10 +462,10 @@ fbq('track','PageView');
       <h2>Da cena <em class="s">ao conteúdo</em></h2>
     </div>
     <div class="steps">
-      <article class="step"><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/06-784673fcea.webp" alt="Página do caderno: Cena, o que aconteceu?" width="880" height="495" loading="lazy" decoding="async"><span class="n">1 · Cena</span><p>O que aconteceu?</p></article>
-      <article class="step"><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/07-4278084787.webp" alt="Página do caderno: Leitura, o que tu percebeu?" width="880" height="495" loading="lazy" decoding="async"><span class="n">2 · Leitura</span><p>O que essa situação fez você perceber?</p></article>
-      <article class="step"><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/08-8b346970c5.webp" alt="Página do caderno: Ponte, onde isso encontra teu trabalho, público ou posicionamento?" width="880" height="495" loading="lazy" decoding="async"><span class="n">3 · Ponte</span><p>Onde isso encontra o seu trabalho, seu público ou seu posicionamento?</p></article>
-      <article class="step"><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/09-77801e4fb7.webp" alt="Página do caderno: Forma, qual é a melhor maneira de contar essa ideia?" width="880" height="495" loading="lazy" decoding="async"><span class="n">4 · Forma</span><p>Qual é a melhor maneira de transformar essa ideia em conteúdo?</p></article>
+      <article class="step"><img class="slide" src="img/14-784673fcea.webp" alt="Página do caderno: Cena, o que aconteceu?" width="880" height="495" loading="lazy" decoding="async"><span class="n">1 · Cena</span><p>O que aconteceu?</p></article>
+      <article class="step"><img class="slide" src="img/15-4278084787.webp" alt="Página do caderno: Leitura, o que tu percebeu?" width="880" height="495" loading="lazy" decoding="async"><span class="n">2 · Leitura</span><p>O que essa situação fez você perceber?</p></article>
+      <article class="step"><img class="slide" src="img/16-8b346970c5.webp" alt="Página do caderno: Ponte, onde isso encontra teu trabalho, público ou posicionamento?" width="880" height="495" loading="lazy" decoding="async"><span class="n">3 · Ponte</span><p>Onde isso encontra o seu trabalho, seu público ou seu posicionamento?</p></article>
+      <article class="step"><img class="slide" src="img/17-77801e4fb7.webp" alt="Página do caderno: Forma, qual é a melhor maneira de contar essa ideia?" width="880" height="495" loading="lazy" decoding="async"><span class="n">4 · Forma</span><p>Qual é a melhor maneira de transformar essa ideia em conteúdo?</p></article>
     </div>
     <p class="method-foot">A situação vivida funciona como <span class="mark">matéria-prima</span>. O conteúdo ganha forma a partir da leitura que você faz dela.</p>
     <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero aprender o método por R$ 67 →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
@@ -448,7 +481,7 @@ fbq('track','PageView');
       <p class="prose">Durante as aulas, você acompanha situações comuns sendo transformadas em conteúdo. A ideia é ver o raciocínio acontecendo para depois fazer o mesmo com o seu próprio repertório.</p>
     </div>
     <div>
-      <img class="slide scene-img" src="https://prisssma-lab-lp.vercel.app/caderno-img/10-18612cd36f.webp" alt="Página do caderno: Uma cena. Cinco possibilidades. Zero ideias inventadas do nada." width="880" height="495" loading="lazy" decoding="async">
+      <img class="slide scene-img" src="img/18-18612cd36f.webp" alt="Página do caderno: Uma cena. Cinco possibilidades. Zero ideias inventadas do nada." width="880" height="495" loading="lazy" decoding="async">
       <div class="outs"><span>Reels</span><span>Carrossel</span><span>Stories</span><span>Opinião</span><span>Conteúdo de conversão</span></div>
     </div>
   </div>
@@ -463,21 +496,21 @@ fbq('track','PageView');
       <p class="prose">Material para estudar, rabiscar e voltar sempre que a página em branco aparecer.</p>
       <div class="tools" aria-hidden="true">
         <svg viewBox="0 0 320 300">
-          <defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter></defs>
+          <defs><filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"></feTurbulence><feDisplacementMap in="SourceGraphic" scale="2.6"></feDisplacementMap></filter></defs>
           <g filter="url(#wob)">
-            <path class="ink thin" d="M76 64 L64 70 Q60 170 84 268 L96 276 M70 66 Q66 168 90 272 M84 270 Q170 262 254 252 M90 276 Q172 268 258 258 M96 280 Q174 272 260 262 L254 250"/>
-            <path class="page" d="M78 62 Q160 56 236 50 Q244 150 254 250 Q172 258 96 268 Q86 165 78 62Z"/>
-            <path class="ink" d="M78 62 Q160 56 236 50 Q240 98 244 150 Q248 200 254 250 Q172 258 96 268 Q88 214 84 160 Q80 110 78 62Z"/>
+            <path class="ink thin" d="M76 64 L64 70 Q60 170 84 268 L96 276 M70 66 Q66 168 90 272 M84 270 Q170 262 254 252 M90 276 Q172 268 258 258 M96 280 Q174 272 260 262 L254 250"></path>
+            <path class="page" d="M78 62 Q160 56 236 50 Q244 150 254 250 Q172 258 96 268 Q86 165 78 62Z"></path>
+            <path class="ink" d="M78 62 Q160 56 236 50 Q240 98 244 150 Q248 200 254 250 Q172 258 96 268 Q88 214 84 160 Q80 110 78 62Z"></path>
             <g class="rings"></g>
           </g>
           <g class="lines"></g>
           <g class="pencil">
             <g transform="rotate(-38)">
-              <path class="ink body" d="M0 0 L16 -6 L104 -6 L104 6 L16 6 Z"/>
-              <path class="ink thin" d="M16 -6 Q12 0 16 6 M16 0 L104 0"/>
-              <path d="M0 0 L6 -2.3 L6 2.3 Z" fill="#111114"/>
-              <path class="ink eraser" d="M104 -6 L118 -6 Q124 0 118 6 L104 6 Z"/>
-              <path class="ink thin" d="M108 -6 L108 6 M112 -6 L112 6"/>
+              <path class="ink body" d="M0 0 L16 -6 L104 -6 L104 6 L16 6 Z"></path>
+              <path class="ink thin" d="M16 -6 Q12 0 16 6 M16 0 L104 0"></path>
+              <path d="M0 0 L6 -2.3 L6 2.3 Z" fill="#111114"></path>
+              <path class="ink eraser" d="M104 -6 L118 -6 Q124 0 118 6 L104 6 Z"></path>
+              <path class="ink thin" d="M108 -6 L108 6 M112 -6 L112 6"></path>
             </g>
           </g>
         </svg>
@@ -509,16 +542,16 @@ fbq('track','PageView');
     </div>
   </div>
   <div class="strip" tabindex="0" aria-label="Páginas do caderno, role para o lado">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/11-d7cbac5ef9.webp" alt="Tem conteúdo aqui" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/12-9fe8ba7c06.webp" alt="O briefing não é prova, é inventário" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/13-61a1663761.webp" alt="Onde as boas ideias estão" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/14-47746442ae.webp" alt="Agora tu está capturando, não desenvolvendo, não publicando" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/15-5d4ae12937.webp" alt="Detalhe dá material" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/16-a5c77a867f.webp" alt="A ponte" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/17-2bc4402e47.webp" alt="Forma" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/18-0cd6e2bbe9.webp" alt="Como parar de começar do zero" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/19-ed46dcf151.webp" alt="Regra simples: 5 + 3 + 1" width="880" height="495" loading="lazy" decoding="async">
-    <img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/20-b5c7540882.webp" alt="Provavelmente tua próxima boa ideia já está acontecendo" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/19-d7cbac5ef9.webp" alt="Tem conteúdo aqui" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/20-9fe8ba7c06.webp" alt="O briefing não é prova, é inventário" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/21-61a1663761.webp" alt="Onde as boas ideias estão" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/22-47746442ae.webp" alt="Agora tu está capturando, não desenvolvendo, não publicando" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/23-5d4ae12937.webp" alt="Detalhe dá material" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/24-a5c77a867f.webp" alt="A ponte" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/25-2bc4402e47.webp" alt="Forma" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/26-0cd6e2bbe9.webp" alt="Como parar de começar do zero" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/27-ed46dcf151.webp" alt="Regra simples: 5 + 3 + 1" width="880" height="495" loading="lazy" decoding="async">
+    <img class="slide" src="img/28-b5c7540882.webp" alt="Provavelmente tua próxima boa ideia já está acontecendo" width="880" height="495" loading="lazy" decoding="async">
   </div>
   <div class="wrap"><p class="fine" style="margin-top:14px">← arraste para ver mais páginas →</p>
     <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero as 130 páginas do Caderno →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
@@ -538,8 +571,8 @@ fbq('track','PageView');
       </div>
     </div>
     <div class="prompts">
-      <figure class="pr bad"><span class="tagline">o pedido genérico</span><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/21-8402d0ca1c.webp" alt="Página do caderno: Pedido genérico, me dê 50 ideias para uma nutricionista" width="880" height="495" loading="lazy" decoding="async"></figure>
-      <figure class="pr good"><span class="tagline y">o pedido que sai do Caderno</span><img class="slide" src="https://prisssma-lab-lp.vercel.app/caderno-img/22-c46e8f4919.webp" alt="Página do caderno: Pedido melhor, com cena, leitura, briefing, público e posicionamento" width="880" height="495" loading="lazy" decoding="async"></figure>
+      <figure class="pr bad"><span class="tagline">o pedido genérico</span><img class="slide" src="img/29-8402d0ca1c.webp" alt="Página do caderno: Pedido genérico, me dê 50 ideias para uma nutricionista" width="880" height="495" loading="lazy" decoding="async"></figure>
+      <figure class="pr good"><span class="tagline y">o pedido que sai do Caderno</span><img class="slide" src="img/30-c46e8f4919.webp" alt="Página do caderno: Pedido melhor, com cena, leitura, briefing, público e posicionamento" width="880" height="495" loading="lazy" decoding="async"></figure>
     </div>
   </div>
 </section>
@@ -548,7 +581,7 @@ fbq('track','PageView');
 <section class="band b-black" id="gabi">
   <div class="wrap teacher">
     <div class="photo">
-      <figure><img src="https://prisssma-lab-lp.vercel.app/caderno-img/23-127fb8c372.webp" alt="Gabriela Martins sentada perto de uma janela, de óculos, sorrindo para a câmera" width="665" height="1000" loading="lazy" decoding="async"></figure>
+      <figure><img src="img/31-127fb8c372.webp" alt="Gabriela Martins sentada perto de uma janela, de óculos, sorrindo para a câmera" width="665" height="1000" loading="lazy" decoding="async"></figure>
       <span class="ribbon">“marketing, negócios e uma quantidade questionável de opiniões”</span>
       <span class="px heart" data-sprite="heart" aria-hidden="true"></span>
     </div>
@@ -567,40 +600,10 @@ fbq('track','PageView');
 </section>
 
 <!-- PROVA · branco -->
-<section class="band b-white">
-  <div class="wrap">
-    <div class="head">
-      <span class="ribbon">esse raciocínio já está no ar</span>
-      <h2>Perfis que a Prisssma <em class="s">acompanha</em></h2>
-      <p class="prose">Clientes da agência que constroem conteúdo a partir do próprio repertório, o mesmo raciocínio que você aprende no Caderno. Seguidores no Instagram, antes e agora.</p>
-    </div>
-    <div class="profiles">
-      <article class="prof"><p class="who">Dr. Alexandre Bussinger<span>Neurologista · @neuro.alexandre</span></p><div class="growth"><span class="from">3.155</span><span class="arr">→</span><span class="to">17 mil</span></div><p class="when">desde mai/2024 · 5x mais seguidores</p></article>
-      <article class="prof"><p class="who">Prof. Ana Pedroso<span>Terapeuta · @anapedrosoprof</span></p><div class="growth"><span class="from">20,9 mil</span><span class="arr">→</span><span class="to">47,4 mil</span></div><p class="when">desde abr/2024 · mais que dobrou</p></article>
-      <article class="prof"><p class="who">Dra. Heloísa de Avó<span>Dermatologista · @dra.heloisadavo</span></p><div class="growth"><span class="from">33,3 mil</span><span class="arr">→</span><span class="to">38,4 mil</span></div><p class="when">desde abr/2024 · +5,1 mil seguidores</p></article>
-    </div>
-    <div class="beforeafter">
-      <figure class="shot"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/24-6b8c8d6f78.webp" alt="Perfil do Dr. Alexandre Bussinger em maio de 2024 com 3.155 seguidores e hoje com 17 mil" loading="lazy" decoding="async"><figcaption>@neuro.alexandre, antes e agora</figcaption></figure>
-      <figure class="shot"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/25-2a0e5d2b2a.webp" alt="Perfil da Prof. Ana Pedroso em abril de 2024 com 20,9 mil seguidores e hoje com 47,4 mil, ao lado de mensagem de agradecimento" loading="lazy" decoding="async"><figcaption>@anapedrosoprof, antes e agora</figcaption></figure>
-    </div>
-    <div class="head" style="margin:76px 0 32px">
-      <span class="ribbon">o que chega no WhatsApp</span>
-      <h2>Quando o conteúdo <em class="s">tem a cara da pessoa</em></h2>
-    </div>
-    <div class="prints">
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/26-9ff1d3f12a.webp" alt="Mensagem do Dr. Ale: vocês se inspiram em pessoas que valem a pena, quando veem valor no trabalho pra além dos números" loading="lazy" decoding="async"><figcaption>Dr. Ale, neurologista</figcaption></figure>
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/27-dc4c95e210.webp" alt="Mensagens de cliente: sinto que cada vez mais o perfil tem verdade, antes tava muito artificial, tô amando essa fase" loading="lazy" decoding="async"><figcaption>“antes tava mt artificial”</figcaption></figure>
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/28-91ec925821.webp" alt="Mensagens de cliente: falei total, me identifiquei demais, mas claro que falou muito melhor do que eu falaria" loading="lazy" decoding="async"><figcaption>“me identifiquei demais”</figcaption></figure>
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/29-eb577a427d.webp" alt="Mensagens de cliente: eu não tô mais pegando em SI, sem horário, pessoal tá tudo indo pelo insta" loading="lazy" decoding="async"><figcaption>agenda cheia pelo Instagram</figcaption></figure>
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/30-e964a7b4eb.webp" alt="Mensagens de cliente: ai gente, emocionei aqui, tá lindo demais esse, muito obrigada, aprovado" loading="lazy" decoding="async"><figcaption>“emocionei aqui”</figcaption></figure>
-      <figure class="chat"><img src="https://prisssma-lab-lp.vercel.app/caderno-img/31-e7e9c88d54.webp" alt="Mensagens de cliente: ficou muito delicado e entregando a mensagem certa" loading="lazy" decoding="async"><figcaption>“a mensagem certa”</figcaption></figure>
-    </div>
-    <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero conteúdo com a minha cara →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
-  </div>
-</section>
+
 
 <!-- PARA QUEM · preto -->
-<section class="band b-black">
+<section class="band b-white">
   <div class="wrap forwho">
     <div class="stack" style="align-content:start">
       <span class="ribbon">para quem é</span>
@@ -619,7 +622,7 @@ fbq('track','PageView');
     <div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero aprender a perceber →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div>
     </div>
   </div>
-</section>
+</section><section class="band b-black"><div class="wrap forwho"><div class="stack" style="align-content:start"><span class="ribbon">para quem não é</span><h2>O Caderno <em class="s">não é pra você</em> se:</h2></div><div class="stack"><ul class="pains"><li>quer post pronto pra copiar e colar sem pensar;</li><li>procura fórmula mágica pra viralizar em 7 dias;</li><li>não topa parar 20 minutos pra olhar pra própria rotina;</li><li>quer continuar terceirizando 100% do que fala no seu perfil.</li></ul><p class="quote">Agora, se você quer parar de depender de agência, trend e IA pra saber o que postar, <span class="q2">o Caderno foi feito pra você.</span></p><div class="cta-row"><a class="btn" href="https://pay.kiwify.com.br/lduscbP">Quero meu Caderno por R$ 67 →</a><p class="fine">R$ 67 · pagamento único · 7 dias de garantia</p></div></div></div></section>
 
 <!-- MUDANÇA · branco -->
 <section class="band b-white">
@@ -663,9 +666,9 @@ fbq('track','PageView');
 <section class="band b-white" style="padding-block:clamp(48px,7vw,80px)">
   <div class="wrap guarantee">
     <svg class="seal" viewBox="0 0 150 150" role="img" aria-label="Selo de 7 dias de garantia">
-      <defs><path id="circ" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs>
-      <circle cx="75" cy="75" r="72" fill="#FFC93C" stroke="#0E0E10" stroke-width="3"/>
-      <circle cx="75" cy="75" r="44" fill="none" stroke="#0E0E10" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <defs><path id="circ" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"></path></defs>
+      <circle cx="75" cy="75" r="72" fill="#FFC93C" stroke="#0E0E10" stroke-width="3"></circle>
+      <circle cx="75" cy="75" r="44" fill="none" stroke="#0E0E10" stroke-width="1.5" stroke-dasharray="3 4"></circle>
       <text font-size="13" letter-spacing="3" fill="#0E0E10"><textPath href="#circ">GARANTIA DE 7 DIAS · GARANTIA ·</textPath></text>
       <text x="75" y="86" text-anchor="middle" font-size="46" fill="#0E0E10">7</text>
       <text x="75" y="104" text-anchor="middle" font-size="13" letter-spacing="2" fill="#0E0E10">DIAS</text>
@@ -686,7 +689,7 @@ fbq('track','PageView');
       <h2>Dúvidas <em class="s">frequentes</em></h2>
     </div>
     <div class="faq">
-      <details open><summary>As aulas são ao vivo?</summary><p>Não. As aulas são gravadas e ficam disponíveis para você assistir no seu ritmo.</p></details>
+      <details open=""><summary>As aulas são ao vivo?</summary><p>Não. As aulas são gravadas e ficam disponíveis para você assistir no seu ritmo.</p></details>
       <details><summary>Por quanto tempo terei acesso?</summary><p>O acesso é de 90 dias após a compra.</p></details>
       <details><summary>Posso imprimir o caderno?</summary><p>Sim. Você recebe uma versão digital preenchível e outra preparada para impressão.</p></details>
       <details><summary>Preciso trabalhar com marketing?</summary><p>Não. O método pode ser usado por profissionais, especialistas, criadores, empreendedores e também por quem produz conteúdo para clientes.</p></details>
@@ -783,6 +786,8 @@ fbq('track','PageView');
 })();
 </script>
 
+
+
 <script>
 /* repassa utm_*, fbclid e src da URL do anúncio para os links da Kiwify */
 (function(){
@@ -794,5 +799,4 @@ fbq('track','PageView');
   });
 })();
 </script>
-</body>
-</html>
+</body></html>
